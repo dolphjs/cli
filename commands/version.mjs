@@ -1,0 +1,36 @@
+import { execSync } from "child_process";
+
+const dependencies = [
+   'class-transformer',
+   'handlebars',
+   'cross-env',
+   'dotenv',
+   'helmet',
+   '@swc/cli',
+   '@swc/core',
+   '@types/cors',
+   '@types/express',
+   '@types/mjml',
+   '@types/node',
+   '@types/nodemailer',
+   '@typescript-eslint/eslint-plugin',
+   '@typescript-eslint/parser',
+   'eslint',
+   'eslint-config-airbnb-base',
+   'eslint-config-prettier',
+   'eslint-plugin-import',
+   'eslint-plugin-prettier',
+   'eslint-plugin-security',
+   'husky',
+   'lint-staged',
+   'node-config',
+   'node-gyp',
+   'nodemon',
+   'prettier',
+   'ts-node',
+   'tsc-alias',
+   'tsconfig-paths',
+   'typescript',
+ ];
+
+ execSync(`npm remove ${dependencies.join(' ')}`)
