@@ -13,14 +13,13 @@ import DemoAppRouter from '@/routes/demo.route';
 dotenv.config({});
 
 const dolph = new Dolph([new DemoAppRouter()], PORT, ENV, { url: null }, [
-	helmet(),
+\t	helmet(),
 ]);
 dolph.listen();
 `
 
 const configIndex = `import { config } from 'dotenv';
 config({});
-
 export const { PORT, ENV } = process.env;
 `
 
@@ -28,39 +27,37 @@ const demoController =  `import { Request, Response } from 'express';
 import { AppRes, catchAsync, httpStatus } from '@dolph/core';
 
 class DemoAppController {
-	public sendGreeting = catchAsync(async (req: Request, res: Response) => {
-		const message =
-			'Welcome to the API end-point for the Dolph app. If you have problems getting started, visit https://github.com/dolphjs/dolph-examples#README.MD';
-		res.status(httpStatus.OK).send({ message });
-	});
+\t	public sendGreeting = catchAsync(async (req: Request, res: Response) => {
+\t\t		const message =
+\t\t			'Welcome to the API end-point for the Dolph app. If you have problems getting started, visit https://github.com/dolphjs/dolph-examples#README.MD';
+	\t\t	res.status(httpStatus.OK).send({ message });
+	\t});
 }
-
-export default DemoAppController;
+\n
+export default DemoAppController;\
 `;
 
-const demoInterface = `import { Router } from '@dolph/core';
-
+const demoInterface = `import { Router } from '@dolph/core';\n
 export interface Routes {
-	path?: string;
-	router: typeof Router;
+\t	path?: string;
+\t	router: typeof Router;
 }
 `
 
-const demoRoute = "import { Router } from '@dolph/core'\;\
-import DemoAppController from '@/controllers/demo.controller'\;\
-class DemoAppRouter \{\
-	public path?: string = '/api/v1'\;\
-	public router = Router()\;\
-	protected controller: DemoAppController = new DemoAppController()\;\
-	constructor() \{\
-		this.Routes()\;\
-	\}\
-      \n\
-	private Routes() \{\
-		this.router.get(\`${this.path}\`, this.controller.sendGreeting)\;\
-	\}\
-\}\
-\n\
+const demoRoute = "import { Router } from '@dolph/core'\;\n\
+import DemoAppController from '@/controllers/demo.controller'\;\n\
+class DemoAppRouter \{\n\
+\t	public path?: string = '/api/v1'\;\n\
+\t	public router = Router()\;\n\
+\t	protected controller: DemoAppController = new DemoAppController()\;\n\
+\t	constructor() \{\n\
+\t\t		this.Routes()\;\n\
+\t	\}\n\
+      \
+private Routes() \{\n\
+\t\tthis.router.get(\`${this.path}\`, this.controller.sendGreeting)\;\n\
+\t	\}\n\
+\}\n\
 export default DemoAppRouter\;\
 "
 
