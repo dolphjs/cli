@@ -15,6 +15,7 @@ import writeReadmeFile from './utils/readmeDate.mjs';
 import writeSubFile from './utils/copySubFolder.mjs';
 
 const dependencies = [
+  '@dolphjs/core',
   'class-transformer',
   'handlebars',
   'cross-env',
