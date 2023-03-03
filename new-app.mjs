@@ -54,7 +54,8 @@ program
   .command('create-app <app-name>')
   .description('Create a new DolphJS app')
   .action(async (appName) => {
-    console.log(chalk.blue('Creating your DolphJS app...') + '🐬');
+    try {
+      console.log(chalk.blue('Creating your DolphJS app...') + '🐬');
 
     const options = [
       'TypeScript - OOP',
@@ -87,23 +88,30 @@ program
     mkdirSync('src/routes')
     writeSubFile()
     // install dependencies using child process execSync
-    const spinner = ora('Installing dependencies...').start()
-     execSync(`npm install ${dependencies.join(' ')}`);
-    spinner.succeed('Dependencies installed!');
+    try {
+      const spinner = ora('Installing dependencies...').start()
+       execSync(`npm install ${dependencies.join(' ')}`);
+      spinner.succeed('Dependencies installed!');
+    
+      // prompt user to select an option
   
-    // prompt user to select an option
-
-    // create app directory and copy files
-
-    // update package.json file
-    console.log(chalk.yellow('Updating package.json...'));
-    // install dev dependencies
-    const spinner2 = ora('Installing dev dependencies...').start();
-    exec('npm install --save-dev @swc/core nodemon husky lint-staged');
-    spinner2.succeed('Dev dependencies installed!');
-
-    // show completion message
-    console.log(chalk.green('Done! Your app has been created.'));
+      // create app directory and copy files
+  
+      // update package.json file
+      console.log(chalk.yellow('Updating package.json...'));
+      // install dev dependencies
+      const spinner2 = ora('Installing dev dependencies...').start();
+      exec('npm install --save-dev @swc/core nodemon husky lint-staged');
+      spinner2.succeed('Dev dependencies installed!');
+  
+      // show completion message
+      console.log(chalk.green('Done! Your app has been created.'));
+    } catch (error) {
+      console.error(chalk.redBright("Error creating your dolph app"), error);
+    }
+    } catch (error) {
+      console.error(chalk.redBright("Error creating your dolph app"), error);
+    }
   });
 
 program.parse(process.argv);
