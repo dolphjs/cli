@@ -9,7 +9,7 @@ import writeFilePackage from './utils/ts-oop/packageData.mjs';
 import writeFileSwcrc from './utils/ts-oop/swcrcData.mjs';
 import writeGitignoreFile from './utils/ts-oop/gitignoreData.mjs'
 import writeNodemonFile from './utils/ts-oop/nodemonData.mjs';
-import writeReadmeFile from './utils/ts-oop/readmeDate.mjs';
+import writeReadmeFile from './utils/ts-oop/readmeData.mjs';
 import writeSubFile from './utils/ts-oop/copySubFolder.mjs';
 import writeSubFileJsFunc from './utils/js-func/writeSubFile.mjs';
 import writeTsconfigFile from './utils/ts-oop/tsconfigFile.mjs';
