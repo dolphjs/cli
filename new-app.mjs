@@ -5,17 +5,18 @@ import { mkdirSync, writeFileSync } from 'fs';
 import inquirer from 'inquirer';
 import chalk from 'chalk';
 import ora from 'ora';
-import path from 'path';
-import { fileURLToPath } from "url";
-import writeFilePackage from './utils/packageData.mjs';
-import writeFileSwcrc from './utils/swcrcData.mjs';
-import writeGitignoreFile from './utils/gitignoreData.mjs';
-import writeNodemonFile from './utils/nodemonData.mjs';
-import writeReadmeFile from './utils/readmeDate.mjs';
-import writeSubFile from './utils/copySubFolder.mjs';
+import writeFilePackage from './utils/ts-oop/packageData.mjs';
+import writeFileSwcrc from './utils/ts-oop/swcrcData.mjs';
+import writeGitignoreFile from './utils/ts-oop/gitignoreData.mjs'
+import writeNodemonFile from './utils/ts-oop/nodemonData.mjs';
+import writeReadmeFile from './utils/ts-oop/readmeDate.mjs';
+import writeSubFile from './utils/ts-oop/copySubFolder.mjs';
+import writeSubFileJsFunc from './utils/js-func/writeSubFile.mjs';
+import writeTsconfigFile from './utils/ts-oop/tsconfigFile.mjs';
 
 const dependencies = [
   '@dolphjs/core',
+  'nodemon',
   'class-transformer',
   'handlebars',
   'cross-env',
@@ -50,7 +51,7 @@ const dependencies = [
 const program = new Command();
 
 program
-  .version('0.1.0')
+  .version('0.1.5')
   .command('create-app <app-name>')
   .description('Create a new DolphJS app')
   .action(async (appName) => {
@@ -76,10 +77,26 @@ program
     process.chdir(appName)
 //    const destDirname = 
     //const packageJsonPath = `./${appName}/package.json`;
+   if(selectedOption === 'TypeScript - OOP'){
+      writeFilePackage(appName)
+      writeFileSwcrc()
+      writeGitignoreFile()
+      writeNodemonFile()
+      writeReadmeFile()
+      writeTsconfigFile()
+      mkdirSync('src')
+      mkdirSync('src/config')
+      mkdirSync('src/controllers')
+      mkdirSync('src/interfaces')
+      mkdirSync('src/routes')
+      writeSubFile()
+   }
+   if(selectedOption === 'TypeScript - Functional Programming'){
     writeFilePackage(appName)
     writeFileSwcrc()
     writeGitignoreFile()
     writeNodemonFile()
+    writeTsconfigFile()
     writeReadmeFile()
     mkdirSync('src')
     mkdirSync('src/config')
@@ -87,6 +104,19 @@ program
     mkdirSync('src/interfaces')
     mkdirSync('src/routes')
     writeSubFile()
+   }
+
+   if(selectedOption === 'Javascript - Functional Programming'){
+        writeFilePackage(appName)
+        writeReadmeFile()
+        writeGitignoreFile()
+        writeNodemonFile()
+        mkdirSync('src')
+        mkdirSync('src/config')
+        mkdirSync('src/controllers')
+        mkdirSync('src/routes')
+        writeSubFileJsFunc()
+   }
     // install dependencies using child process execSync
     try {
       const spinner = ora('Installing dependencies...').start()
@@ -103,14 +133,14 @@ program
       const spinner2 = ora('Installing dev dependencies...').start();
       exec('npm install --save-dev @swc/core nodemon husky lint-staged');
       spinner2.succeed('Dev dependencies installed!');
-  
+      
       // show completion message
-      console.log(chalk.green('Done! Your app has been created.'));
+      console.log(chalk.green(`Done! Your app has been created. Navigate to your app by running "cd ${appName}" and then run "npm start"`));
     } catch (error) {
-      console.error(chalk.redBright("Error creating your dolph app"), error);
+      console.log(chalk.redBright("\nError creating your dolph app", error));
     }
     } catch (error) {
-      console.error(chalk.redBright("Error creating your dolph app"), error);
+      console.log(chalk.redBright("Error creating your dolph app", error));
     }
   });
 

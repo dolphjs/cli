@@ -28,13 +28,3 @@ helmet
     "tsc-alias": "^1.8.2",
     "tsconfig-paths": "^4.1.1",
     "typescript": "^4.9.4"
-
-
-
-        DB_HOST=your_database_host
-DB_USER=your_database_username
-DB_PASSWORD=your_database_password
-DB_DATABASE=your_database_name
-DB_PORT=your_database_port (usually 3306 for MySQL)
-
-    03607712

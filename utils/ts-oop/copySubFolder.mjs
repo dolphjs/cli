@@ -1,10 +1,6 @@
-import path from "path";
-import { fileURLToPath } from "url";
 import { writeFileSync } from "fs";
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-
-const indexData = `import Dolph from '@dolph/core';
+const indexData = `import Dolph from '@dolphjs/core';
 import helmet from 'helmet';
 import * as dotenv from 'dotenv';
 import { ENV, PORT } from '@/config';
@@ -24,7 +20,7 @@ export const { PORT, ENV } = process.env;
 `
 
 const demoController =  `import { Request, Response } from 'express';
-import { AppRes, catchAsync, httpStatus } from '@dolph/core';
+import { AppRes, catchAsync, httpStatus } from '@dolphjs/core';
 
 class DemoAppController {
 \t	public sendGreeting = catchAsync(async (req: Request, res: Response) => {
@@ -37,14 +33,14 @@ class DemoAppController {
 export default DemoAppController;\
 `;
 
-const demoInterface = `import { Router } from '@dolph/core';\n
+const demoInterface = `import { Router } from '@dolphjs/core';\n
 export interface Routes {
 \t	path?: string;
 \t	router: typeof Router;
 }
 `
 
-const demoRoute = "import { Router } from '@dolph/core'\;\n\
+const demoRoute = "import { Router } from '@dolphjs/core'\;\n\
 import DemoAppController from '@/controllers/demo.controller'\;\n\
 class DemoAppRouter \{\n\
 \t	public path?: string = '/api/v1'\;\n\
