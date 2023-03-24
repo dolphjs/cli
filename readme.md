@@ -12,4 +12,10 @@ It is advisable to always build your applications using the CLI tool so as to ma
 
 To install the package, run:
 
-`npm install dolph-cli`
+`npm install dolph-cli -g`
+
+# START
+
+To run the CLI application, run:
+
+`dollph-cli create-app "app-name"`
