@@ -196,6 +196,12 @@ program
     } catch (error) {
       console.log(chalk.redBright("Error creating your dolph app", error));
     }
+  })
+
+  program.command('*', { hidden: true })
+  .action(() => {
+    console.log(chalk.redBright(`Unknown command. See the list of available commands:`));
+    program.help()
   });
 
 program.parse(process.argv);
