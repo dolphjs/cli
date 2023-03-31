@@ -1,4 +1,4 @@
-import { writeFileSync } from 'fs';
+import { writeFileSync } from "fs";
 
 const indexRoute = `const { Router } = '@dolphjs/core';
 const demoRoute = require('./demo.route');
@@ -13,9 +13,10 @@ const defaultRoutes = [
 ];
 
 module.exports = defaultRoutes;
-`
+`;
 
-const demoRoutes = "const { Router } = require('@dolphjs/core');\n\
+const demoRoutes =
+  "const { Router } = require('@dolphjs/core');\n\
 const { sendMsg } = require('../controllers/demo.controller');\n\
 \
 const router = Router();\n\
@@ -25,16 +26,17 @@ const path = '/api/v1';\n\
 router.get(`${path}`, sendMsg);\n\
 \
 module.exports = router;\n\
-"
+";
 
 const indexData = `const Dolph = require('@dolphjs/core');
 const defaultRouter = require('./routes');
 const { env, port } = require('./config');
 const helmet = require('helmet');
+const cors = require('cors');
 
-const dolph = new Dolph([defaultRouter], port, env, { url: null }, [helmet()]);
+const dolph = new Dolph([defaultRouter], port, env, { url: null }, [helmet(), cors()]);
 dolph.listen();
-`
+`;
 
 const controllerDemo = `const { httpStatus, catchAsync } = require('@dolphjs/core');
 
@@ -45,9 +47,10 @@ const sendMsg = catchAsync(async (req, res) => {
 });
 
 module.exports = { sendMsg };
-`
+`;
 
-const  configIndex = "const dotenv = require('dotenv');\n\
+const configIndex =
+  "const dotenv = require('dotenv');\n\
 const path = require('path');\n\
 const Joi = require('joi');\n\
 \n\
@@ -74,12 +77,12 @@ module.exports = {\n\
 \t	env: envVars.NODE_ENV,\n\
 \t	port: envVars.PORT,\n\
 };\
-"
+";
 
-export default function writeSubFileJsFunc(){
-   writeFileSync('src/index.js', indexData);
-   writeFileSync('src/config/index.js', configIndex);
-   writeFileSync('src/routes/demo.route.js', demoRoutes);
-   writeFileSync('src/routes/index.js', indexRoute);
-   writeFileSync('src/controllers/demo.controller.js', controllerDemo)
+export default function writeSubFileJsFunc() {
+  writeFileSync("src/index.js", indexData);
+  writeFileSync("src/config/index.js", configIndex);
+  writeFileSync("src/routes/demo.route.js", demoRoutes);
+  writeFileSync("src/routes/index.js", indexRoute);
+  writeFileSync("src/controllers/demo.controller.js", controllerDemo);
 }
