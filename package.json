@@ -3,7 +3,7 @@
   "version": "0.1.7",
   "description": "DolphJs is an express.js library for making software development easier by taking care of all the unneccessary tasks developers have to worry about.",
   "main": "new-app.mjs",
-  "bin":{
+  "bin": {
     "dolph": "./new-app.mjs"
   },
   "scripts": {
