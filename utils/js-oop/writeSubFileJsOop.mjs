@@ -1,6 +1,7 @@
-import { writeFileSync } from 'fs';
+import { writeFileSync } from "fs";
 
-const routeIndex = "const { Router } = require('@dolphjs/core');\n\
+const routeIndex =
+  "const { Router } = require('@dolphjs/core');\n\
 const DemoController = require('../controllers/demo.controller');\n\
 \n\
 class DemoRouter {\n\
@@ -18,18 +19,20 @@ class DemoRouter {\n\
 }\n\
 \n\
 module.exports = DemoRouter;\
-"
+";
 
 const indexData = `const Dolph = require('@dolphjs/core');
 const { env, port } = require('./config');
 const DemoRouter = require('./routes/demo.route');
+const cors = require('cors');
 const helmet = require('helmet');
 
 const dolph = new Dolph([new DemoRouter()], port, env, { url: null }, [
 	helmet(),
+	cors({origin: '*'})
 ]);
 dolph.listen();
-`
+`;
 
 const controllerDemo = `const { httpStatus, catchAsync } = require('@dolphjs/core');
 
@@ -42,8 +45,9 @@ class DemoController {
 }
 
 module.exports = DemoController;
-`
-const configIndex = "const dotenv = require('dotenv');\n\
+`;
+const configIndex =
+  "const dotenv = require('dotenv');\n\
 const Joi = require('joi');\n\
 \n\
 dotenv.config({});\n\
@@ -68,12 +72,11 @@ module.exports = {\n\
 \t\t	env: envVars.NODE_ENV,\
 \t\t	port: envVars.PORT,\n\
 };\
-"
+";
 
-
-export default function writeSubFileJsOop(){
-   writeFileSync('src/index.js', indexData);
-   writeFileSync('src/config/index.js', configIndex);
-   writeFileSync('src/routes/demo.route.js', routeIndex);
-   writeFileSync('src/controllers/demo.controller.js', controllerDemo)
+export default function writeSubFileJsOop() {
+  writeFileSync("src/index.js", indexData);
+  writeFileSync("src/config/index.js", configIndex);
+  writeFileSync("src/routes/demo.route.js", routeIndex);
+  writeFileSync("src/controllers/demo.controller.js", controllerDemo);
 }
