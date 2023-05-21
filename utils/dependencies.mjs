@@ -6,7 +6,7 @@ export const dependencies = [
   "joi",
 ];
 
-export const devDependencies = ["@types/express", "node-config"];
+export const devDependencies = ["@types/express", "node-config", "nodemon"];
 
 export const tsDependencies = [...dependencies, "class-transformer"];
 export const tsDevDependencies = [
@@ -20,4 +20,5 @@ export const tsDevDependencies = [
   "tsc-alias",
   "tsconfig-paths",
   "typescript",
+  "nodemon",
 ];

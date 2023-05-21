@@ -1,13 +1,11 @@
-const { Router } = '@dolphjs/core';
-const demoRoute = require('./demo.route');
-
-const router = Router();
+const { Router } = "@dolphjs/core";
+const demoRoute = require("./demo.route");
 
 const defaultRoutes = [
-	{
-		path: '/',
-		route: demoRoute,
-	},
+  {
+    path: "/",
+    router: demoRoute,
+  },
 ];
 
 module.exports = defaultRoutes;
