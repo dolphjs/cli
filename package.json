@@ -16,9 +16,20 @@
     "ExpressJs",
     "API",
     "NodeJs",
-    "JavaScript"
+    "JavaScript",
+    "dolphjs",
+    "dolph-cli",
+    "dolphcli"
   ],
   "author": "Ghostcod3r <https://github.com/chrisegbaaaibon>",
+  "maintainers": [
+    "Christopher Egbaaibon <https://github.com/chrisegbaaaibon>",
+    "Utibeabasi Ekong <https://github.com/Xlaez>"
+  ],
+  "contributors": [
+    "Utibeabasi Ekong <https://github.com/Xlaez>"
+  ],
+  "repository": "https://github.com/dolphjs/cli",
   "license": "MIT",
   "dependencies": {
     "@types/handlebars": "^4.1.0",

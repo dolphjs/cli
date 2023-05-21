@@ -9,9 +9,9 @@ import DemoAppRouter from '@/routes/demo.route';
 
 dotenv.config({});
 
-const dolph = new Dolph([new DemoAppRouter()], PORT, ENV, { url: null }, [
-\t	helmet(),
-\t cors({'origin': '*'})
+const dolph = new Dolph([new DemoAppRouter()], PORT, ENV,  null , [
+	helmet(),
+  cors({'origin': '*'})
 ]);
 dolph.listen();
 `;
@@ -25,11 +25,11 @@ const demoController = `import { Request, Response } from 'express';
 import { AppRes, catchAsync, httpStatus } from '@dolphjs/core';
 
 class DemoAppController {
-\t	public sendGreeting = catchAsync(async (req: Request, res: Response) => {
-\t\t		const message =
-\t\t			'Welcome to the API end-point for the Dolph app. If you have problems getting started, visit https://github.com/dolphjs/dolph-examples#README.MD';
-	\t\t	res.status(httpStatus.OK).send({ message });
-	\t});
+\tpublic sendGreeting = catchAsync(async (req: Request, res: Response) => {
+\t  const message =
+\t  'Welcome to the API end-point for the Dolph app. If you have problems getting started, visit https://github.com/dolphjs/\t  dolph-examples#README.MD';
+\t  res.status(httpStatus.OK).send({ message });
+\t});
 }
 \n
 export default DemoAppController;\
@@ -37,25 +37,27 @@ export default DemoAppController;\
 
 const demoInterface = `import { Router } from '@dolphjs/core';\n
 export interface Routes {
-\t	path?: string;
-\t	router: typeof Router;
+\tpath?: string;
+\trouter: typeof Router;
 }
 `;
 
 const demoRoute =
   "import { Router } from '@dolphjs/core';\n\
 import DemoAppController from '@/controllers/demo.controller';\n\
+\n\
 class DemoAppRouter {\n\
-\t	public path?: string = '/api/v1';\n\
-\t	public router = Router();\n\
-\t	protected controller: DemoAppController = new DemoAppController();\n\
-\t	constructor() {\n\
-\t\t		this.Routes();\n\
-\t	}\n\
-      \
+\tpublic path?: string = '/api/v1';\n\
+\tpublic router = Router();\n\
+\n\
+\tprotected controller: DemoAppController = new DemoAppController();\n\
+\tconstructor() {\n\
+\t\tthis.Routes();\n\
+\t}\n\
+    \
 private Routes() {\n\
 \t\tthis.router.get(`${this.path}`, this.controller.sendGreeting);\n\
-\t	}\n\
+\t}\n\
 }\n\
 export default DemoAppRouter;\
 ";
