@@ -40,7 +40,7 @@ const controllerDemo = `const { httpStatus, catchAsync } = require('@dolphjs/cor
 
 const sendMsg = catchAsync(async (req, res) => {
 \tconst message =
-\t'Welcome to the API end-point for the Dolph app. If you have problems getting started, visit https://github.com/dolphjs/\tdolph-examples#README.MD';
+\t'Welcome to the API end-point for the Dolph app. If you have problems getting started, visit https://github.com/dolphjs/\tcore#README.MD';
 \tres.status(httpStatus.OK).json({ message });
 });
 
