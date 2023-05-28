@@ -8,7 +8,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node new-app.mjs"
+    "start": "node new-app.mjs",
+    "push": "npm publish"
   },
   "keywords": [
     "Dolph-cli",
