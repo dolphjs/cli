@@ -31,7 +31,7 @@ const sendGreeting = catchAsync(async (req: Request, res: Response) => {
 \tres.status(httpStatus.OK).send({ message });
 });
 
-export default { sendGreeting };\
+export { sendGreeting };\
 `;
 
 const demoRoute = `import { Router } from '@dolphjs/core'

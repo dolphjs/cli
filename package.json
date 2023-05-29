@@ -1,6 +1,6 @@
 {
   "name": "@dolphjs/cli",
-  "version": "0.0.1beta",
+  "version": "0.0.2beta",
   "description": "DolphJs is an express.js library for making software development easier by taking care of all the unneccessary tasks developers have to worry about.",
   "main": "new-app.mjs",
   "bin": {
