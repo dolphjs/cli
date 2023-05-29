@@ -27,7 +27,7 @@ import { AppRes, catchAsync, httpStatus } from '@dolphjs/core';
 class DemoAppController {
 \tpublic sendGreeting = catchAsync(async (req: Request, res: Response) => {
 \t  const message =
-\t  'Welcome to the API end-point for the Dolph app. If you have problems getting started, visit https://github.com/dolphjs/\t  core#README.MD';
+\t  'Welcome to the API end-point for the Dolph app. If you have problems getting started, visit https://github.com/dolphjs/core#README.MD';
 \t  res.status(httpStatus.OK).send({ message });
 \t});
 }

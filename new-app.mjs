@@ -149,9 +149,9 @@ program
         const spinner2 = ora("Installing dev dependencies...").start();
 
         if (selectedOption === jsFunc || selectedOption === jsOop) {
-          exec(`${installCommand} ${devDependencies.join(" ")}`);
+          execSync(`${installCommand} ${devDependencies.join(" ")}`);
         } else if (selectedOption === tsFunc || selectedOption === tsOop) {
-          exec(`${installCommand} ${tsDevDependencies.join(" ")}`);
+          execSync(`${installCommand} ${tsDevDependencies.join(" ")}`);
         }
 
         spinner2.succeed("Dev dependencies installed!");
@@ -303,11 +303,10 @@ program
         // show completion message
         console.log(
           chalk.green(
-            `Done! Your app has been created. Navigate to your app by running "cd ${appName}" and then run ${chalk.bgGreen(
-              runMsg
-            )}`
+            `Done! Your app has been created. Navigate to your app by running "cd ${appName}" and then run ${runMsg}`
           )
         );
+        process.exit(1);
       } catch (error) {
         console.log(chalk.redBright("\nError creating your app", error));
       }

@@ -2,7 +2,7 @@ import { writeFileSync } from "fs";
 
 const routeIndex =
   "const { Router } = require('@dolphjs/core');\n\
-const DemoController = require('@/controllers/demo.controller');\n\
+const DemoController = require('../controllers/demo.controller');\n\
 \n\
 class DemoRouter {\n\
 \tpath = '/v1/api';\n\
@@ -76,19 +76,19 @@ module.exports = {\n\
 };\
 ";
 
-const jsConfigFile = `{
-  "compilerOptions": {
-    "paths": {
-      "@/*": ["./src/*"]
-    }
-  }
-}
-`;
+// const jsConfigFile = `{
+//   "compilerOptions": {
+//     "paths": {
+//       "@/*": ["./src/*"]
+//     }
+//   }
+// }
+// `;
 
 export default function writeSubFileJsOop() {
   writeFileSync("src/index.js", indexData);
   writeFileSync("src/config/index.js", configIndex);
   writeFileSync("src/routes/demo.route.js", routeIndex);
   writeFileSync("src/controllers/demo.controller.js", controllerDemo);
-  writeFileSync("jsConfig.json", jsConfigFile);
+  // writeFileSync("jsConfig.json", jsConfigFile);
 }
