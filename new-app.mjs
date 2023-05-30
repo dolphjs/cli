@@ -29,7 +29,7 @@ import {
 const program = new Command();
 
 program
-  .version("0.1.0")
+  .version("0.1.1")
   .command("create-app <app-name>")
   .description("Create a new dolphJs application")
   .action(async (appName) => {
@@ -165,9 +165,11 @@ program
         process.exit(1);
       } catch (error) {
         console.log(chalk.redBright("\nError creating your app", error));
+        process.exit(1);
       }
     } catch (error) {
       console.log(chalk.redBright("Error creating your app", error));
+      process.exit(1);
     }
   });
 
