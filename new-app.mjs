@@ -29,7 +29,7 @@ import {
 const program = new Command();
 
 program
-  .version("1.0.0")
+  .version("0.1.0")
   .command("create-app <app-name>")
   .description("Create a new dolphJs application")
   .action(async (appName) => {
@@ -149,153 +149,9 @@ program
         const spinner2 = ora("Installing dev dependencies...").start();
 
         if (selectedOption === jsFunc || selectedOption === jsOop) {
-          execSync(`${installCommand} ${devDependencies.join(" ")}`);
+          execSync(`${installCommand} ${devDependencies.join(" ")} -D`);
         } else if (selectedOption === tsFunc || selectedOption === tsOop) {
-          execSync(`${installCommand} ${tsDevDependencies.join(" ")}`);
-        }
-
-        spinner2.succeed("Dev dependencies installed!");
-
-        // show completion message
-        console.log(
-          chalk.green(
-            `Done! Your app has been created. Navigate to your app by running "cd ${appName}" and then run ${chalk.bgGreen(
-              runMsg
-            )}`
-          )
-        );
-      } catch (error) {
-        console.log(chalk.redBright("\nError creating your app", error));
-      }
-    } catch (error) {
-      console.log(chalk.redBright("Error creating your app", error));
-    }
-  });
-
-program
-  .version("1.0.0")
-  .command("create-app <app-name>")
-  .description("Create a new dolphJs application")
-  .action(async (appName) => {
-    try {
-      console.log(
-        chalk.blueBright("Initializing your dolphJs application...") + "🐬"
-      );
-      const options = [tsOop, tsFunc, jsOop, jsFunc];
-      const { selectedOption } = await inquirer.prompt([
-        {
-          type: "list",
-          name: "selectedOption",
-          message: "How do you want to write your application ? 🤔:",
-          choices: options,
-        },
-      ]);
-
-      const packageManagerOptions = [npm, yarn, pnpm];
-      const { selectedPackageManagerOption } = await inquirer.prompt([
-        {
-          type: "list",
-          name: "selectedPackageManagerOption",
-          message: "Which is your preffered package manager ? :",
-          choices: packageManagerOptions,
-        },
-      ]);
-      console.info(chalk.green(`Using ${selectedPackageManagerOption}!`));
-      console.log(
-        chalk.green(`Getting your application ready for ${selectedOption}!`)
-      );
-      mkdirSync(appName);
-      process.chdir(appName);
-      if (selectedOption === tsOop) {
-        writeTsFilePackage(appName);
-        writeTsFileSwcrc();
-        writeGitignoreFile();
-        writeTsNodemonFile();
-        writeReadmeFile();
-        writeTsconfigFile();
-        mkdirSync("src");
-        mkdirSync("src/config");
-        mkdirSync("src/controllers");
-        mkdirSync("src/interfaces");
-        mkdirSync("src/routes");
-        writeTsOopSubFile();
-      }
-      if (selectedOption === tsFunc) {
-        writeTsFuncFilePackage(appName);
-        writeTsFileSwcrc();
-        writeGitignoreFile();
-        writeTsNodemonFile();
-        writeTsconfigFile();
-        writeReadmeFile();
-        mkdirSync("src");
-        mkdirSync("src/config");
-        mkdirSync("src/controllers");
-        mkdirSync("src/routes");
-        writeTsFuncSubFile();
-      }
-
-      if (selectedOption === jsFunc) {
-        writeJsFIlePackage(appName);
-        writeReadmeFile();
-        writeGitignoreFile();
-        mkdirSync("src");
-        mkdirSync("src/config");
-        mkdirSync("src/controllers");
-        mkdirSync("src/routes");
-        writeSubFileJsFunc();
-      }
-
-      if (selectedOption === jsOop) {
-        writeJsFIlePackage(appName);
-        writeReadmeFile();
-        writeGitignoreFile();
-        mkdirSync("src");
-        mkdirSync("src/config");
-        mkdirSync("src/controllers");
-        mkdirSync("src/routes");
-        writeSubFileJsOop();
-      }
-
-      // install dependencies using child process execSync
-      try {
-        const spinner = ora("Installing dependencies...").start();
-        let installCommand = "yarn add";
-        let runMsg = "yarn dev";
-
-        switch (selectedPackageManagerOption) {
-          case npm:
-            installCommand = "npm install";
-            runMsg = "npm run dev";
-            break;
-          case pnpm:
-            installCommand = "pnpm add";
-            runMsg = "pnpm dev";
-          case yarn:
-            installCommand = installCommand;
-          default:
-            break;
-        }
-
-        if (selectedOption === jsFunc || selectedOption === jsOop) {
-          execSync(`${installCommand} ${dependencies.join(" ")}`);
-        } else if (selectedOption === tsFunc || selectedOption === tsOop) {
-          execSync(`${installCommand} ${tsDependencies.join(" ")}`);
-        }
-        spinner.succeed("Dependencies installed!");
-
-        // prompt user to select an option
-
-        // create app directory and copy files
-
-        // update package.json file
-        console.log(chalk.yellow("Updating package.json..."));
-        // install dev dependencies
-        const spinner2 = ora("Installing dev dependencies...").start();
-
-        if (selectedOption === jsFunc || selectedOption === jsOop) {
-          exec(`${installCommand} ${devDependencies.join(" ")}`);
-        } else if (selectedOption === tsFunc || selectedOption === tsOop) {
-          exec(`${installCommand} ${tsDevDependencies.join(" ")}`);
+          execSync(`${installCommand} ${tsDevDependencies.join(" ")} -D`);
         }
 
         spinner2.succeed("Dev dependencies installed!");
