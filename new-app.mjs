@@ -29,7 +29,7 @@ import {
 const program = new Command();
 
 program
-  .version("0.1.0")
+  .version("0.1.1")
   .command("create-app <app-name>")
   .description("Create a new dolphJs application")
   .action(async (appName) => {
